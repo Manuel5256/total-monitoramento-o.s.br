@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Total Monitoramento - Área do Técnico</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header-top">
+        <div class="header-content">
+            <div class="logo-area">
+                <div class="logo-icon">📡</div>
+                <div class="logo-text">
+                    <h1>TOTAL <span>MONITORAMENTO</span></h1>
+                    <p>Área do Técnico</p>
+                </div>
+            </div>
+            <nav class="nav-menu">
+                <a href="index.html">🏠 Abrir O.S.</a>
+                <a href="central.html">📊 Central</a>
+                <a href="tecnico.html" class="active">👨‍🔧 Técnico</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Conteúdo Principal -->
+    <div class="main-container">
+        <!-- Informações do Técnico Logado -->
+        <div class="info-tecnico">
+            <div class="tecnico-nome">
+                👨‍🔧 Técnico: <strong id="nomeTecnicoLogado">Carregando...</strong>
+            </div>
+            <button class="btn btn-danger btn-sm" onclick="logoutTecnico()">🚪 Sair do Sistema</button>
+        </div>
+
+        <!-- Cards de Estatísticas do Técnico -->
+        <div class="stats-grid" id="statsTecnico">
+            <div class="stat-card abertas">
+                <div class="stat-numero" id="countMinhasAbertas">0</div>
+                <div class="stat-label">🆕 Disponíveis para Atender</div>
+            </div>
+            <div class="stat-card andamento">
+                <div class="stat-numero" id="countMeuAndamento">0</div>
+                <div class="stat-label">⏳ Meus Atendimentos</div>
+            </div>
+            <div class="stat-card resolvidas">
+                <div class="stat-numero" id="countMinhasResolvidas">0</div>
+                <div class="stat-label">✅ Finalizados Hoje</div>
+            </div>
+        </div>
+
+        <!-- Ordens de Serviço Abertas (Disponíveis) -->
+        <div class="card">
+            <div class="card-header">
+                <div class="icon">🆕</div>
+                <h2>Ordens de Serviço Abertas para Atendimento</h2>
+            </div>
+            
+            <p style="color: var(--cinza-texto); margin-bottom: 20px; font-size: 14px;">
+                Estas são as OS que aguardam um técnico. Clique em <strong style="color: var(--amarelo);">Iniciar</strong> para assumir o atendimento.
+            </p>
+            
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Protocolo</th>
+                            <th>Data Abertura</th>
+                            <th>Cliente</th>
+                            <th>Contato</th>
+                            <th>Serviço</th>
+                            <th>Descrição</th>
+                            <th>Prioridade</th>
+                            <th>Ação</th>
+                        </tr>
+                    </thead>
+                    <tbody id="corpoOSAbertas">
+                        <!-- Dados carregados via JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Minhas OS em Andamento -->
+        <div class="card mt-30">
+            <div class="card-header">
+                <div class="icon">⏳</div>
+                <h2>Meus Atendimentos em Andamento</h2>
+            </div>
+            
+            <p style="color: var(--cinza-texto); margin-bottom: 20px; font-size: 14px;">
+                Ordens de serviço que você está atendendo. Ao finalizar, será necessário confirmar com o <strong style="color: var(--amarelo);">número do protocolo</strong>.
+            </p>
+            
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Protocolo</th>
+                            <th>Data Abertura</th>
+                            <th>Cliente</th>
+                            <th>Contato</th>
+                            <th>Serviço</th>
+                            <th>Início Atendimento</th>
+                            <th>Status</th>
+                            <th>Ação</th>
+                        </tr>
+                    </thead>
+                    <tbody id="corpoOSAndamento">
+                        <!-- Dados carregados via JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Instruções -->
+        <div class="card mt-30">
+            <div class="card-header">
+                <div class="icon">📖</div>
+                <h2>Instruções para o Técnico</h2>
+            </div>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; color: var(--cinza-texto);">
+                <div style="background: rgba(255,215,0,0.05); padding: 20px; border-radius: 10px; border: 1px solid rgba(255,215,0,0.1);">
+                    <h4 style="color: var(--amarelo); margin-bottom: 10px;">1️⃣ Iniciar Atendimento</h4>
+                    <p style="font-size: 13px;">Clique em <strong>Iniciar</strong> na OS desejada. Você será designado como técnico responsável e o status mudará para "Em Andamento".</p>
+                </div>
+                
+                <div style="background: rgba(255,215,0,0.05); padding: 20px; border-radius: 10px; border: 1px solid rgba(255,215,0,0.1);">
+                    <h4 style="color: var(--amarelo); margin-bottom: 10px;">2️⃣ Realizar o Serviço</h4>
+                    <p style="font-size: 13px;">Execute o serviço conforme descrito na OS. Mantenha o cliente informado sobre o andamento.</p>
+                </div>
+                
+                <div style="background: rgba(255,215,0,0.05); padding: 20px; border-radius: 10px; border: 1px solid rgba(255,215,0,0.1);">
+                    <h4 style="color: var(--amarelo); margin-bottom: 10px;">3️⃣ Finalizar Serviço</h4>
+                    <p style="font-size: 13px;">Ao concluir, clique em <strong>Finalizar</strong> e digite o número do protocolo para confirmar. O status mudará para "Resolvida".</p>
+                </div>
+                
+                <div style="background: rgba(255,215,0,0.05); padding: 20px; border-radius: 10px; border: 1px solid rgba(255,215,0,0.1);">
+                    <h4 style="color: var(--amarelo); margin-bottom: 10px;">⚠️ Atenção</h4>
+                    <p style="font-size: 13px;">A finalização é <strong>irreversível</strong>. Certifique-se de que o serviço foi realmente concluído antes de finalizar.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Rodapé -->
+    <footer style="text-align: center; padding: 20px; color: var(--cinza-texto); font-size: 12px; margin-top: 40px;">
+        <p>&copy; 2024 TOTAL MONITORAMENTO - Todos os direitos reservados</p>
+        <p style="margin-top: 5px;">Área do Técnico | Acesso Restrito</p>
+    </footer>
+
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-database-compat.js"></script>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

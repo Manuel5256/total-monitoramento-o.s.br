@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Total Monitoramento - Cadastro de Técnico</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Container de Cadastro -->
+    <div class="login-container">
+        <!-- Cabeçalho -->
+        <div class="login-header">
+            <div class="logo-mini">👨‍🔧</div>
+            <h2>TOTAL MONITORAMENTO</h2>
+            <p style="opacity: 0.7; font-size: 13px; letter-spacing: 2px; margin-top: 5px;">Cadastro de Técnico</p>
+        </div>
+        
+        <!-- Formulário de Cadastro -->
+        <div class="login-body">
+            <form onsubmit="cadastrarTecnico(event)">
+                <div class="form-group">
+                    <label>Nome Completo</label>
+                    <input type="text" id="nomeTecnico" required placeholder="Digite seu nome completo">
+                </div>
+
+                <div class="form-group">
+                    <label>E-mail</label>
+                    <input type="email" id="emailTecnico" required placeholder="tecnico@totalmonitoramento.com.br">
+                </div>
+
+                <div class="form-group">
+                    <label>Senha</label>
+                    <input type="password" id="senhaTecnico" required placeholder="Crie uma senha segura (mínimo 6 caracteres)" minlength="6">
+                </div>
+
+                <div class="form-group">
+                    <label>Confirmar Senha</label>
+                    <input type="password" id="confirmarSenha" required placeholder="Digite a senha novamente" minlength="6">
+                </div>
+
+                <div class="form-group">
+                    <label>Especialidade</label>
+                    <select id="especialidadeTecnico" required>
+                        <option value="">Selecione sua especialidade</option>
+                        <option value="CFTV">CFTV - Circuito Fechado de TV</option>
+                        <option value="Alarmes">Alarmes Monitorados</option>
+                        <option value="Controle de Acesso">Controle de Acesso</option>
+                        <option value="Cerca Elétrica">Cerca Elétrica</option>
+                        <option value="Redes">Redes e Infraestrutura</option>
+                        <option value="Suporte Técnico">Suporte Técnico Geral</option>
+                        <option value="Instalação">Instalação de Equipamentos</option>
+                        <option value="Manutenção">Manutenção Preventiva</option>
+                    </select>
+                </div>
+
+                <div style="margin-top: 25px;">
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">
+                        ✅ Cadastrar Técnico
+                    </button>
+                </div>
+            </form>
+
+            <!-- Links -->
+            <div class="link-area">
+                <p>Já possui cadastro? <a href="login-tecnico.html">Faça login aqui</a></p>
+                <p style="margin-top: 12px;">
+                    <a href="index.html">← Voltar para Área do Cliente</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Informações -->
+    <div style="max-width: 450px; margin: 30px auto; text-align: center; color: var(--cinza-texto); font-size: 12px;">
+        <div style="background: var(--preto-piano-claro); padding: 20px; border-radius: 10px; border: 1px solid rgba(255,215,0,0.1);">
+            <p style="color: var(--amarelo); font-weight: bold; margin-bottom: 10px;">📋 Requisitos para Cadastro</p>
+            <p>✅ Nome completo</p>
+            <p>✅ E-mail válido</p>
+            <p>✅ Senha com no mínimo 6 caracteres</p>
+            <p>✅ Especialidade técnica</p>
+            <p style="margin-top: 10px; color: #888;">Após o cadastro, você será redirecionado para o login</p>
+        </div>
+    </div>
+
+    <!-- Rodapé -->
+    <footer style="text-align: center; padding: 20px; color: var(--cinza-texto); font-size: 12px; margin-top: 20px;">
+        <p>&copy; 2024 TOTAL MONITORAMENTO - Todos os direitos reservados</p>
+        <p style="margin-top: 5px;">Cadastro de Técnicos | Total Monitoramento</p>
+    </footer>
+
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-database-compat.js"></script>
+
+    <script src="js/script.js"></script>
+    <script>
+        // Validação extra de senha
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.querySelector('form');
+            const senha = document.getElementById('senhaTecnico');
+            const confirmarSenha = document.getElementById('confirmarSenha');
+            
+            form.addEventListener('submit', function(e) {
+                if (senha.value !== confirmarSenha.value) {
+                    e.preventDefault();
+                    alert('❌ As senhas não coincidem! Por favor, digite senhas iguais.');
+                    confirmarSenha.focus();
+                    return false;
+                }
+                
+                if (senha.value.length < 6) {
+                    e.preventDefault();
+                    alert('❌ A senha deve ter no mínimo 6 caracteres!');
+                    senha.focus();
+                    return false;
+                }
+                
+                return true;
+            });
+        });
+    </script>
+</body>
+</html>
